@@ -138,11 +138,50 @@ ul { list-style: none; margin: 0; padding: 0; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  padding: 120px 0 90px;
-  background: radial-gradient(ellipse at top right, rgba(215,39,42,0.18), transparent 55%), var(--bg);
+  padding: 160px 0 130px;
+  background: var(--bg);
   overflow: hidden;
   text-align: center;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* Full-bleed looping YouTube background video, cropped to cover like background-size:cover */
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-video-bg iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw;      /* 16:9 */
+  min-height: 100%;
+  min-width: 177.78vh;  /* 16:9 */
+  transform: translate(-50%, -50%);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.6) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 700px) {
+  .hero { min-height: 520px; padding: 140px 0 90px; }
+}
+
 .hero h1 {
   font-size: clamp(2.6rem, 6vw, 5rem);
   line-height: 1.02;
