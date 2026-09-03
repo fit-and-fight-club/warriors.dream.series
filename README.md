@@ -33,6 +33,15 @@ or open `index.html` directly in a browser (a couple of relative links assume a 
 - **GitHub Pages**: push to a repo, then enable Pages on the `main` branch (root).
 - **Netlify / Vercel**: drag-and-drop the folder or connect the repo — no build command needed, publish directory is `/`.
 
+## Hero background video
+
+The home page hero now plays a looping YouTube video (`https://youtu.be/F2Uu6WP3tu0`) as its background, with a dark overlay behind the headline for readability — see `.hero-video-bg` / `.hero-overlay` in `css/style.css` and the `<iframe>` in `index.html`. A few notes:
+
+- It's muted and set to autoplay + loop (`mute=1&loop=1&playlist=<id>`), which is required for autoplay to work in every modern browser — YouTube (and browsers generally) block unmuted autoplay.
+- It's a live YouTube embed, not a self-hosted file, so it needs the visitor's browser to reach youtube.com — it won't preview inside offline/sandboxed tools, but will play normally on a real site visit.
+- To swap in a different video, just change the video ID in the `src` (both the `embed/<id>` and `playlist=<id>` parts need to match).
+- If you'd rather self-host the video (faster load, no YouTube branding flash, works without third-party cookies), replace the `<iframe>` with a plain `<video autoplay muted loop playsinline>` tag pointing at an `.mp4` in `assets/`.
+
 ## Things worth doing before this replaces the live site
 
 - **Contact form**: the form on `pages/contact.html` is currently a static form with a placeholder JS handler (see `js/main.js`) — it doesn't send anywhere yet. Wire it up to a form backend such as [Formspree](https://formspree.io), [Netlify Forms](https://docs.netlify.com/forms/setup/), or a small serverless function that emails `support@warriorsdreamseries.com`.
