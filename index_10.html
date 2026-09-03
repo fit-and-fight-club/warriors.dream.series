@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warriors Dream Series</title>
+<meta name="description" content="WDS is the home of ruthless pros, elite amateurs, and unforgettable fights inside one electrifying cage.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+
+  :root{
+    --ink:#F3F1EB;
+    --ink-dim:#9CA0B4;
+    --ink-faint:#6A6E82;
+    --void:#0A0A0E;
+    --surface:#131318;
+    --surface-2:#1B1B23;
+    --surface-3:#211F27;
+    --line:#2B2A34;
+    --line-soft:#201F27;
+    --red:#E31C3D;
+    --red-bright:#FF3355;
+    --red-deep:#4A0A16;
+    --navy:#1C2438;
+    --navy-soft:#232C44;
+    --gold:#E8A94C;
+    --font-display:'Anton', 'Arial Narrow', sans-serif;
+    --font-head:'Oswald', 'Arial Narrow', sans-serif;
+    --font-body:'Work Sans', -apple-system, sans-serif;
+    --font-mono:'JetBrains Mono', 'Courier New', monospace;
+    --wrap:1180px;
+    color-scheme: dark;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3,h4{margin:0;text-wrap:balance;}
+  p{margin:0;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:inherit;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px;}
+
+  ::selection{background:var(--red);color:#fff;}
+
+  :focus-visible{outline:2px solid var(--red-bright);outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
+  }
+
+  /* ---------- shared type utilities ---------- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--red-bright);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:2px;
+    background:var(--red-bright);
+    display:inline-block;
+  }
+  .section-title{
+    font-family:var(--font-display);
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    font-size:clamp(32px,5vw,52px);
+    line-height:1.02;
+    color:var(--ink);
+  }
+  .section-title em{
+    font-style:normal;
+    color:var(--red-bright);
+  }
+  .section-sub{
+    font-family:var(--font-body);
+    color:var(--ink-dim);
+    font-size:16px;
+    max-width:52ch;
+    margin-top:14px;
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    flex-wrap:wrap;
+    margin-bottom:44px;
+  }
+  .btn{
+    font-family:var(--font-head);
+    font-weight:600;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    font-size:14px;
+    padding:15px 30px;
+    border:1px solid transparent;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+    clip-path:polygon(0 0,100% 0,100% 70%,94% 100%,0 100%);
+  }
+  .btn--solid{background:var(--red);color:#fff;}
+  .btn--solid:hover{background:var(--red-bright);transform:translateY(-2px);}
+  .btn--ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn--ghost:hover{border-color:var(--ink);transform:translateY(-2px);}
+  .btn--sm{padding:11px 20px;font-size:12.5px;}
+
+  /* ---------- section dividers ---------- */
+  .divider{height:34px;position:relative;background:var(--void);}
+  .divider svg{display:block;width:100%;height:100%;}
+
+  /* ================= NAV ================= */
+  header.site{
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,10,14,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 28px;
+    max-width:var(--wrap);margin:0 auto;
+    gap:20px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+  .brand-mark{
+    width:40px;height:40px;
+    background:var(--red);
+    clip-path:polygon(20% 0,100% 0,80% 100%,0 100%);
+    display:flex;align-items:center;justify-content:center;
+    flex:none;
+  }
+  .brand-mark span{
+    font-family:var(--font-display);
+    color:#fff;font-size:19px;
+    transform:translateX(2px);
+  }
+  .brand-word{
+    font-family:var(--font-head);
+    font-weight:600;
+    letter-spacing:.06em;
+    font-size:15px;
+    line-height:1.15;
+    text-transform:uppercase;
+  }
+  .brand-word small{
+    display:block;
+    font-family:var(--font-mono);
+    font-weight:500;
+    letter-spacing:.18em;
+    font-size:9.5px;
+    color:var(--ink-faint);
+    margin-top:2px;
+  }
+  .nav-links{
+    display:flex;gap:32px;align-items:center;
+    font-family:var(--font-head);
+    font-size:13.5px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  .nav-links a{
+    text-decoration:none;color:var(--ink-dim);
+    position:relative;padding:6px 0;
+    transition:color .18s ease;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;
+    width:0;height:2px;background:var(--red);
+    transition:width .2s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:flex;align-items:center;gap:18px;}
+  .nav-toggle{
+    display:none;background:none;border:1px solid var(--line);
+    color:var(--ink);padding:9px 11px;
+  }
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .nav-toggle{display:flex;}
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 0%, rgba(227,28,61,.18), transparent 60%),
+      linear-gradient(180deg, #0D0D12 0%, #0A0A0E 60%, var(--void) 100%);
+    padding-top:88px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .hero-cage{
+    position:absolute;
+    right:-8%;top:8%;
+    width:640px;height:640px;
+    opacity:.16;
+    animation:spin 90s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .hero-slash{
+    position:absolute;inset:0;
+    background:linear-gradient(100deg, transparent 46%, rgba(227,28,61,.14) 50%, transparent 54%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    max-width:var(--wrap);margin:0 auto;
+    padding:64px 28px 0;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+  .hero-eyebrow{margin-bottom:22px;}
+  .hero h1{
+    font-family:var(--font-display);
+    text-transform:uppercase;
+    font-weight:400;
+    font-size:clamp(46px,8.6vw,104px);
+    line-height:.94;
+    letter-spacing:.002em;
+    max-width:14ch;
+    animation:fadeUp .7s ease both;
+  }
+  .hero h1 .line2{color:var(--red-bright);}
+  .hero-copy{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:40px;flex-wrap:wrap;
+    margin-top:26px;
+    animation:fadeUp .7s ease .1s both;
+  }
+  .hero-copy p{max-width:46ch;color:var(--ink-dim);font-size:17px;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px;animation:fadeUp .7s ease .18s both;}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+  /* countdown card */
+  .next-fight{
+    margin-top:56px;
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(27,27,35,.7), rgba(19,19,24,.7));
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    animation:fadeUp .7s ease .26s both;
+  }
+  .nf-info{padding:30px 34px;border-right:1px solid var(--line);}
+  .nf-tag{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;}
+  .nf-title{font-family:var(--font-display);font-size:clamp(24px,3vw,32px);text-transform:uppercase;margin-top:10px;}
+  .nf-meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:16px;font-family:var(--font-head);font-size:13.5px;color:var(--ink-dim);letter-spacing:.02em;}
+  .nf-meta b{color:var(--ink);font-weight:600;}
+  .nf-countdown{
+    padding:26px 34px;
+    display:flex;flex-direction:column;justify-content:center;gap:12px;
+  }
+  .cd-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase;}
+  .cd-grid{display:flex;gap:18px;font-family:var(--font-mono);font-variant-numeric:tabular-nums;}
+  .cd-unit{text-align:center;}
+  .cd-num{font-size:clamp(26px,3.4vw,38px);font-weight:700;color:var(--ink);line-height:1;}
+  .cd-unit small{display:block;margin-top:6px;font-size:9.5px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase;}
+  @media (max-width:760px){
+    .next-fight{grid-template-columns:1fr;}
+    .nf-info{border-right:none;border-bottom:1px solid var(--line);}
+  }
+
+  /* ================= TICKER ================= */
+  .ticker{
+    background:var(--red);
+    overflow:hidden;
+    border-bottom:1px solid var(--red-deep);
+  }
+  .ticker-track{
+    display:flex;
+    width:max-content;
+    animation:marquee 32s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){ .ticker-track{animation:none;overflow-x:auto;} }
+  .ticker-item{
+    display:flex;align-items:center;gap:14px;
+    padding:14px 0;
+    font-family:var(--font-head);
+    font-weight:600;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    font-size:14px;
+    color:#fff;
+    white-space:nowrap;
+  }
+  .ticker-item .num{font-family:var(--font-mono);font-weight:700;}
+  .ticker-item::after{content:"";width:6px;height:6px;background:#fff;border-radius:50%;margin:0 26px 0 26px;opacity:.6;}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ================= GENERIC SECTION ================= */
+  section{padding:96px 0;}
+  .bg-void{background:var(--void);}
+  .bg-surface{background:var(--surface);}
+
+  /* ================= RANKINGS ================= */
+  .tape-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  @media (max-width:860px){.tape-grid{grid-template-columns:1fr;}}
+  .tape-card{
+    background:var(--surface);
+    padding:34px 30px 30px;
+    position:relative;
+    display:flex;flex-direction:column;
+    gap:18px;
+  }
+  .tape-card.is-champ{background:var(--surface-2);}
+  .tape-top{display:flex;justify-content:space-between;align-items:flex-start;}
+  .tape-class{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);}
+  .tape-class b{color:var(--ink-dim);}
+  .champ-badge{
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gold);border:1px solid rgba(232,169,76,.5);
+    padding:4px 9px;
+  }
+  .fighter-portrait{
+    width:100%;height:170px;
+    background:
+      radial-gradient(circle at 22% 18%, rgba(227,28,61,.28), transparent 55%),
+      linear-gradient(160deg, var(--surface-3), var(--navy));
+    position:relative;overflow:hidden;
+    border:1px solid var(--line);
+    display:flex;align-items:flex-end;
+    padding:14px 16px;
+  }
+  .fighter-portrait::before{
+    content:attr(data-weight);
+    position:absolute;right:-6px;top:-18px;
+    font-family:var(--font-display);
+    font-size:104px;line-height:1;
+    color:rgba(243,241,235,.06);
+    letter-spacing:-.02em;
+  }
+  .fighter-portrait .fp-mark{
+    width:34px;height:34px;
+    border:1.5px solid rgba(227,28,61,.7);
+    display:flex;align-items:center;justify-content:center;
+    transform:rotate(45deg);
+    position:relative;z-index:1;
+  }
+  .fighter-portrait .fp-mark span{
+    transform:rotate(-45deg);
+    font-family:var(--font-mono);
+    font-size:10px;font-weight:700;color:var(--red-bright);
+  }
+  .fighter-name{font-family:var(--font-display);font-size:26px;text-transform:uppercase;letter-spacing:.01em;}
+  .fighter-nick{font-family:var(--font-mono);font-size:11.5px;color:var(--red-bright);letter-spacing:.05em;}
+  .fighter-record{
+    display:flex;align-items:baseline;gap:10px;
+    font-family:var(--font-mono);
+  }
+  .fighter-record .rec{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;}
+  .fighter-record .rec-label{font-size:10.5px;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase;}
+  .finish-bar{display:flex;height:6px;width:100%;overflow:hidden;border:1px solid var(--line);}
+  .finish-bar span{height:100%;}
+  .finish-key{display:flex;gap:16px;font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;}
+  .finish-key i{display:inline-block;width:8px;height:8px;margin-right:5px;}
+
+  /* ================= EVENT / FIGHT CARD ================= */
+  .event-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start;}
+  @media (max-width:900px){.event-grid{grid-template-columns:1fr;}}
+  .fightcard-list{display:flex;flex-direction:column;}
+  .bout{
+    display:grid;
+    grid-template-columns:70px 1fr auto;
+    gap:18px;align-items:center;
+    padding:20px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .bout:first-child{padding-top:0;}
+  .bout-tag{
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .bout.is-main .bout-tag{color:var(--red-bright);}
+  .bout-names{font-family:var(--font-head);font-size:16.5px;font-weight:600;letter-spacing:.01em;}
+  .bout-names .vs{color:var(--ink-faint);font-weight:400;margin:0 8px;font-family:var(--font-mono);font-size:12px;}
+  .bout-division{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);text-align:right;text-transform:uppercase;white-space:nowrap;}
+
+  .ticket-box{
+    border:1px solid var(--line);
+    background:var(--surface);
+  }
+  .ticket-box-head{
+    padding:22px 26px;
+    background:var(--navy);
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    border-bottom:1px solid var(--line);
+  }
+  .ticket-box-head h4{font-family:var(--font-head);text-transform:uppercase;letter-spacing:.04em;font-size:14px;}
+  .ticket-box-head span{font-family:var(--font-mono);font-size:11px;color:var(--gold);}
+  .tier{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 26px;
+    border-bottom:1px solid var(--line-soft);
+    font-family:var(--font-head);
+  }
+  .tier:last-of-type{border-bottom:none;}
+  .tier-name{font-size:14px;letter-spacing:.02em;text-transform:uppercase;}
+  .tier-name small{display:block;font-family:var(--font-body);text-transform:none;color:var(--ink-faint);font-size:12px;margin-top:3px;letter-spacing:0;}
+  .tier-price{font-family:var(--font-mono);font-size:16px;font-weight:700;}
+  .ticket-box .btn{width:calc(100% - 52px);margin:22px 26px 26px;justify-content:center;}
+
+  /* ================= PAST EVENTS ================= */
+  .filter-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .filter-chip{
+    font-family:var(--font-head);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:500;
+    padding:9px 18px;border:1px solid var(--line);background:transparent;color:var(--ink-dim);
+    cursor:pointer;transition:all .18s ease;
+  }
+  .filter-chip:hover{color:var(--ink);border-color:var(--ink-faint);}
+  .filter-chip.is-active{background:var(--red);border-color:var(--red);color:#fff;}
+  .events-grid{
+    margin-top:40px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
+  }
+  @media (max-width:900px){.events-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:620px){.events-grid{grid-template-columns:1fr;}}
+  .event-card{
+    background:var(--void);padding:26px 24px;
+    display:flex;flex-direction:column;gap:14px;
+    transition:background .2s ease;
+  }
+  .event-card:hover{background:var(--surface);}
+  .event-card[hidden]{display:none;}
+  .event-cat{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--red-bright);}
+  .event-name{font-family:var(--font-head);font-size:17px;font-weight:600;line-height:1.3;}
+  .event-meta{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-faint);}
+  .event-link{font-family:var(--font-head);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-top:auto;}
+  .event-link:hover{color:var(--red-bright);}
+
+  /* ================= TESTIMONIALS ================= */
+  .quote-wrap{
+    position:relative;
+    border:1px solid var(--line);
+    background:linear-gradient(160deg, var(--surface-2), var(--surface));
+    padding:56px 60px;
+    min-height:220px;
+  }
+  @media (max-width:640px){.quote-wrap{padding:36px 26px;}}
+  .quote-mark{font-family:var(--font-display);font-size:80px;color:var(--red);line-height:1;position:absolute;top:18px;left:24px;opacity:.5;}
+  .quote-slide{display:none;}
+  .quote-slide.is-active{display:block;animation:fadeUp .5s ease both;}
+  .quote-text{font-family:var(--font-head);font-weight:400;font-size:clamp(19px,2.4vw,26px);line-height:1.45;max-width:62ch;position:relative;}
+  .quote-by{margin-top:26px;display:flex;align-items:center;gap:14px;}
+  .quote-avatar{width:42px;height:42px;background:var(--navy);clip-path:polygon(20% 0,100% 0,80% 100%,0 100%);flex:none;}
+  .quote-name{font-family:var(--font-head);font-weight:600;font-size:14px;letter-spacing:.02em;}
+  .quote-role{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;}
+  .quote-dots{display:flex;gap:10px;margin-top:34px;}
+  .quote-dot{width:30px;height:3px;background:var(--line);border:none;cursor:pointer;padding:0;}
+  .quote-dot.is-active{background:var(--red);}
+
+  /* ================= TRAINERS ================= */
+  .trainer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media (max-width:860px){.trainer-grid{grid-template-columns:1fr;}}
+  .trainer-card{border:1px solid var(--line);background:var(--void);}
+  .trainer-photo{
+    height:150px;
+    background:linear-gradient(150deg, var(--navy-soft), var(--surface-3));
+    position:relative;overflow:hidden;
+    border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .trainer-photo::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(100deg, transparent 42%, rgba(227,28,61,.16) 50%, transparent 58%);
+  }
+  .trainer-initials{
+    width:64px;height:64px;
+    border:1.5px solid var(--accent, var(--red));
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);
+    font-size:20px;letter-spacing:.02em;
+    color:var(--accent, var(--red));
+    position:relative;z-index:1;
+    background:rgba(10,10,14,.5);
+  }
+  .trainer-body{padding:22px 24px 26px;}
+  .trainer-role{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red-bright);}
+  .trainer-name{font-family:var(--font-head);font-weight:600;font-size:18px;margin-top:8px;}
+  .trainer-bio{font-size:14px;color:var(--ink-dim);margin-top:10px;line-height:1.55;}
+
+  /* ================= SCHEDULE ================= */
+  .schedule-list{border-top:1px solid var(--line);}
+  .sched-row{
+    display:grid;
+    grid-template-columns:120px 1fr 220px 90px;
+    gap:20px;align-items:center;
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+  }
+  @media (max-width:760px){
+    .sched-row{grid-template-columns:1fr;gap:6px;padding:18px 0;}
+    .sched-date{order:1;}
+  }
+  .sched-date{font-family:var(--font-mono);font-size:13px;color:var(--gold);}
+  .sched-name{font-family:var(--font-head);font-weight:600;font-size:15.5px;}
+  .sched-venue{font-family:var(--font-body);font-size:13.5px;color:var(--ink-faint);}
+  .sched-status{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;text-align:right;}
+  .sched-status.is-next{color:var(--red-bright);}
+  .sched-status.is-done{color:var(--ink-faint);}
+  .sched-row a.event-link{justify-self:end;margin:0;}
+
+  /* ================= BLOG ================= */
+  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media (max-width:860px){.blog-grid{grid-template-columns:1fr;}}
+  .blog-card{border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;}
+  .blog-thumb{height:150px;background:linear-gradient(135deg, var(--red-deep), var(--void) 70%);position:relative;border-bottom:1px solid var(--line);}
+  .blog-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg, transparent 40%, rgba(227,28,61,.22) 50%, transparent 60%);}
+  .blog-body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:12px;flex:1;}
+  .blog-date{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.1em;}
+  .blog-title{font-family:var(--font-head);font-weight:600;font-size:16.5px;line-height:1.35;}
+  .blog-excerpt{font-size:13.5px;color:var(--ink-dim);line-height:1.55;}
+
+  /* ================= CTA BAND ================= */
+  .cta-band{
+    background:linear-gradient(120deg, var(--red-deep), var(--void) 65%);
+    border-top:1px solid var(--line-soft);
+    border-bottom:1px solid var(--line-soft);
+    padding:80px 0;
+    text-align:left;
+  }
+  .cta-inner{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;}
+  .cta-inner h2{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(30px,4.4vw,46px);max-width:14ch;}
+
+  /* ================= FOOTER ================= */
+  footer{background:var(--surface);border-top:1px solid var(--line);padding:70px 0 0;}
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.3fr .8fr .8fr 1fr;
+    gap:44px;
+    padding-bottom:56px;
+    border-bottom:1px solid var(--line);
+  }
+  @media (max-width:860px){.footer-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:520px){.footer-grid{grid-template-columns:1fr;}}
+  .footer-brand p{color:var(--ink-dim);font-size:14px;margin-top:16px;max-width:32ch;line-height:1.6;}
+  .footer-social{display:flex;gap:12px;margin-top:22px;}
+  .footer-social a{
+    width:36px;height:36px;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    text-decoration:none;transition:border-color .18s ease, color .18s ease;
+    color:var(--ink-dim);
+  }
+  .footer-social a:hover{border-color:var(--red);color:var(--red-bright);}
+  .footer-col h5{font-family:var(--font-head);font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint);margin-bottom:18px;}
+  .footer-col ul{display:flex;flex-direction:column;gap:11px;}
+  .footer-col a{font-size:14px;color:var(--ink-dim);text-decoration:none;transition:color .18s ease;}
+  .footer-col a:hover{color:var(--ink);}
+  .footer-contact li{font-size:13.5px;color:var(--ink-dim);line-height:1.6;}
+  .footer-contact b{display:block;color:var(--ink-faint);font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+  .footer-bottom{
+    display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+    padding:26px 0;
+    font-family:var(--font-mono);font-size:11.5px;color:var(--ink-faint);
+  }
+
+  .reveal-note{position:absolute;}
+</style>
+
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <a class="brand" href="#top">
+      <span class="brand-mark"><span>W</span></span>
+      <span class="brand-word">Warriors Dream Series<small>Est. 2023 &middot; India</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#top">Home</a></li>
+      <li><a href="#upcoming">Events</a></li>
+      <li><a href="#rankings">Rankings</a></li>
+      <li><a href="#trainers">About Us</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+      <li><a href="#blog">Media Room</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn btn--solid btn--sm" href="#upcoming">Book Now</a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-slash" aria-hidden="true"></div>
+    <svg class="hero-cage" viewBox="0 0 200 200" aria-hidden="true">
+      <polygon points="100,4 170,40 196,110 150,180 50,180 4,110 30,40" fill="none" stroke="#E31C3D" stroke-width="1.4"/>
+      <polygon points="100,28 152,54 172,112 136,160 64,160 28,112 48,54" fill="none" stroke="#9CA0B4" stroke-width="0.8" opacity="0.6"/>
+    </svg>
+    <div class="hero-inner">
+      <div class="eyebrow hero-eyebrow">India's Premier MMA Battleground</div>
+      <h1>Where Warriors<br><span class="line2">Are Made.</span></h1>
+      <div class="hero-copy">
+        <p>The home of ruthless pros, elite amateurs, and unforgettable fights inside one electrifying cage. Six seasons in, WDS is where India's next generation of champions gets forged.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn--solid" href="#blog">Watch Latest Fights</a>
+        <a class="btn btn--ghost" href="#upcoming">Book Now →</a>
+      </div>
+
+      <div class="next-fight">
+        <div class="nf-info">
+          <div class="nf-tag">Next Up &middot; Fight Night 19</div>
+          <div class="nf-title">Sharma Defends. The Giant Returns.</div>
+          <div class="nf-meta">
+            <span>Venue &middot; <b>DY Patil Sports Stadium</b>, Nerul, Navi Mumbai</span>
+            <span>Date &middot; <b>Sat, Oct 24, 2026</b></span>
+            <span>Doors &middot; <b>5:00 PM</b></span>
+          </div>
+        </div>
+        <div class="nf-countdown">
+          <div class="cd-label">Cage Locks In</div>
+          <div class="cd-grid" id="countdown" data-target="2026-10-24T17:00:00+05:30">
+            <div class="cd-unit"><div class="cd-num" id="cd-d">00</div><small>Days</small></div>
+            <div class="cd-unit"><div class="cd-num" id="cd-h">00</div><small>Hrs</small></div>
+            <div class="cd-unit"><div class="cd-num" id="cd-m">00</div><small>Min</small></div>
+            <div class="cd-unit"><div class="cd-num" id="cd-s">00</div><small>Sec</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TICKER ============ -->
+  <div class="ticker">
+    <div class="ticker-track" id="ticker-track">
+      <!-- content injected twice by JS for seamless loop, static fallback below -->
+      <div class="ticker-item"><span class="num">18</span>&nbsp;Events Hosted</div>
+      <div class="ticker-item"><span class="num">6</span>&nbsp;Cities Across India</div>
+      <div class="ticker-item"><span class="num">40+</span>&nbsp;Fighters Signed</div>
+      <div class="ticker-item"><span class="num">71%</span>&nbsp;Finish Rate</div>
+      <div class="ticker-item"><span class="num">3</span>&nbsp;Weight Class Champions</div>
+      <div class="ticker-item"><span class="num">4</span>&nbsp;Countries Represented</div>
+    </div>
+  </div>
+
+  <!-- ============ RANKINGS ============ -->
+  <section class="bg-void" id="rankings">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Tale of the Tape</div>
+          <h2 class="section-title">Current <em>Champions</em></h2>
+          <p class="section-sub">Three weight classes, three undisputed champions. Every record below is fights won inside the WDS cage.</p>
+        </div>
+      </div>
+
+      <div class="tape-grid">
+        <!-- Flyweight -->
+        <article class="tape-card is-champ">
+          <div class="tape-top">
+            <div class="tape-class">Flyweight &middot; <b>125 lb / 56.7 kg</b></div>
+            <div class="champ-badge">Champion</div>
+          </div>
+          <div class="fighter-portrait" data-weight="125">
+            <div class="fp-mark"><span>FW</span></div>
+          </div>
+          <div>
+            <div class="fighter-name">Khan</div>
+            <div class="fighter-nick">"The Falcon"</div>
+          </div>
+          <div class="fighter-record">
+            <span class="rec">12&#8211;1&#8211;0</span>
+            <span class="rec-label">Pro Record</span>
+          </div>
+          <div class="finish-bar" aria-hidden="true">
+            <span style="width:66%;background:var(--red);"></span>
+            <span style="width:25%;background:var(--navy-soft);"></span>
+            <span style="width:9%;background:var(--ink-faint);"></span>
+          </div>
+          <div class="finish-key">
+            <span><i style="background:var(--red);"></i>8 KO/TKO</span>
+            <span><i style="background:var(--navy-soft);"></i>3 SUB</span>
+            <span><i style="background:var(--ink-faint);"></i>1 DEC</span>
+          </div>
+        </article>
+
+        <!-- Lightweight -->
+        <article class="tape-card is-champ">
+          <div class="tape-top">
+            <div class="tape-class">Lightweight &middot; <b>155 lb / 70.3 kg</b></div>
+            <div class="champ-badge">Undefeated</div>
+          </div>
+          <div class="fighter-portrait" data-weight="155">
+            <div class="fp-mark"><span>LW</span></div>
+          </div>
+          <div>
+            <div class="fighter-name">Sharma</div>
+            <div class="fighter-nick">"The Reckoning"</div>
+          </div>
+          <div class="fighter-record">
+            <span class="rec">15&#8211;0&#8211;0</span>
+            <span class="rec-label">Pro Record</span>
+          </div>
+          <div class="finish-bar" aria-hidden="true">
+            <span style="width:60%;background:var(--red);"></span>
+            <span style="width:27%;background:var(--navy-soft);"></span>
+            <span style="width:13%;background:var(--ink-faint);"></span>
+          </div>
+          <div class="finish-key">
+            <span><i style="background:var(--red);"></i>9 KO/TKO</span>
+            <span><i style="background:var(--navy-soft);"></i>4 SUB</span>
+            <span><i style="background:var(--ink-faint);"></i>2 DEC</span>
+          </div>
+        </article>
+
+        <!-- Heavyweight -->
+        <article class="tape-card is-champ">
+          <div class="tape-top">
+            <div class="tape-class">Heavyweight &middot; <b>265 lb / 120.2 kg</b></div>
+            <div class="champ-badge">Champion</div>
+          </div>
+          <div class="fighter-portrait" data-weight="265">
+            <div class="fp-mark"><span>HW</span></div>
+          </div>
+          <div>
+            <div class="fighter-name">Vikram</div>
+            <div class="fighter-nick">"The Giant"</div>
+          </div>
+          <div class="fighter-record">
+            <span class="rec">9&#8211;2&#8211;0</span>
+            <span class="rec-label">Pro Record</span>
+          </div>
+          <div class="finish-bar" aria-hidden="true">
+            <span style="width:78%;background:var(--red);"></span>
+            <span style="width:11%;background:var(--navy-soft);"></span>
+            <span style="width:11%;background:var(--ink-faint);"></span>
+          </div>
+          <div class="finish-key">
+            <span><i style="background:var(--red);"></i>7 KO/TKO</span>
+            <span><i style="background:var(--navy-soft);"></i>1 SUB</span>
+            <span><i style="background:var(--ink-faint);"></i>1 DEC</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ UPCOMING EVENT / FIGHT CARD ============ -->
+  <section class="bg-surface" id="upcoming">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Upcoming Event</div>
+          <h2 class="section-title">WDS Fight Night <em>19</em></h2>
+          <p class="section-sub">DY Patil Sports Stadium, Nerul, Navi Mumbai &middot; Saturday, October 24, 2026 &middot; Doors 5:00 PM, Main Card 8:00 PM</p>
+        </div>
+      </div>
+
+      <div class="event-grid">
+        <div class="fightcard-list">
+          <div class="bout is-main">
+            <span class="bout-tag">Main<br>Event</span>
+            <span class="bout-names">Arjun Sharma <span class="vs">vs</span> Diego Fernandes</span>
+            <span class="bout-division">Lightweight Title &middot; 5 Rds</span>
+          </div>
+          <div class="bout">
+            <span class="bout-tag">Co-Main</span>
+            <span class="bout-names">Imran Khan <span class="vs">vs</span> Ravi Thapa</span>
+            <span class="bout-division">Flyweight Title &middot; 5 Rds</span>
+          </div>
+          <div class="bout">
+            <span class="bout-tag">Prelim</span>
+            <span class="bout-names">Vikram Rathod <span class="vs">vs</span> Marcus Bello</span>
+            <span class="bout-division">Heavyweight &middot; 3 Rds</span>
+          </div>
+          <div class="bout">
+            <span class="bout-tag">Prelim</span>
+            <span class="bout-names">Neha Choudhary <span class="vs">vs</span> Priya Iyer</span>
+            <span class="bout-division">Women's Bantamweight &middot; 3 Rds</span>
+          </div>
+          <div class="bout">
+            <span class="bout-tag">Prelim</span>
+            <span class="bout-names">Aakash Verma <span class="vs">vs</span> Suraj Nair</span>
+            <span class="bout-division">Welterweight &middot; 3 Rds</span>
+          </div>
+        </div>
+
+        <div class="ticket-box">
+          <div class="ticket-box-head">
+            <h4>Get Cage-Side</h4>
+            <span>via BookMyShow</span>
+          </div>
+          <div class="tier">
+            <div class="tier-name">Cage-Side<small>Front row, floor seating</small></div>
+            <div class="tier-price">₹7,999</div>
+          </div>
+          <div class="tier">
+            <div class="tier-name">Ringside<small>Elevated tiered seating</small></div>
+            <div class="tier-price">₹4,499</div>
+          </div>
+          <div class="tier">
+            <div class="tier-name">General<small>Full-card access</small></div>
+            <div class="tier-price">₹1,499</div>
+          </div>
+          <a class="btn btn--solid" href="#top">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PAST EVENTS ============ -->
+  <section class="bg-void" id="past-events">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Fight Archive</div>
+          <h2 class="section-title">Past <em>Events</em></h2>
+          <p class="section-sub">Every card WDS has run since launch — filter by series to jump straight to the results.</p>
+        </div>
+        <div class="filter-row" id="filter-row">
+          <button class="filter-chip is-active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="main">Main Events</button>
+          <button class="filter-chip" data-filter="contender">Contender Series</button>
+          <button class="filter-chip" data-filter="fightnight">Fight Nights</button>
+          <button class="filter-chip" data-filter="intl">WDS International</button>
+        </div>
+      </div>
+
+      <div class="events-grid" id="events-grid">
+        <article class="event-card" data-cat="fightnight">
+          <div class="event-cat">Fight Nights</div>
+          <div class="event-name">WDS Fight Night 18</div>
+          <div class="event-meta">Aug 29, 2026 &middot; Cidco Exhibition Centre, Vashi</div>
+          <a class="event-link" href="#">Full Results →</a>
+        </article>
+        <article class="event-card" data-cat="main">
+          <div class="event-cat">Main Events</div>
+          <div class="event-name">WDS Main Event 7</div>
+          <div class="event-meta">Jun 14, 2026 &middot; NSCI Dome, Worli, Mumbai</div>
+          <a class="event-link" href="#">Full Results →</a>
+        </article>
+        <article class="event-card" data-cat="contender">
+          <div class="event-cat">Contender Series</div>
+          <div class="event-name">Contender Series 4</div>
+          <div class="event-meta">Apr 26, 2026 &middot; Thyagaraj Stadium, Delhi</div>
+          <a class="event-link" href="#">Full Results →</a>
+        </article>
+        <article class="event-card" data-cat="intl">
+          <div class="event-cat">WDS International</div>
+          <div class="event-name">Mumbai vs Manila</div>
+          <div class="event-meta">Feb 8, 2026 &middot; Jio World Convention Centre</div>
+          <a class="event-link" href="#">Full Results →</a>
+        </article>
+        <article class="event-card" data-cat="fightnight">
+          <div class="event-cat">Fight Nights</div>
+          <div class="event-name">WDS Fight Night 17</div>
+          <div class="event-meta">Dec 13, 2025 &middot; Sree Kanteerava Stadium, Bengaluru</div>
+          <a class="event-link" href="#">Full Results →</a>
+        </article>
+        <article class="event-card" data-cat="main">
+          <div class="event-cat">Main Events</div>
+          <div class="event-name">WDS Main Event 6</div>
+          <div class="event-meta">Oct 4, 2025 &middot; NSCI Dome, Worli, Mumbai</div>
+          <a class="event-link" href="#">Full Results →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="bg-surface" id="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">What They're Saying</div>
+          <h2 class="section-title">From The <em>Cage</em> Up</h2>
+        </div>
+      </div>
+
+      <div class="quote-wrap">
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <div class="quote-slide is-active" data-slide="0">
+          <p class="quote-text">WDS is the platform India has been waiting for — the professional standards, the world-class production. Being the Lightweight Champion here means you've truly earned your place among the elite.</p>
+          <div class="quote-by">
+            <div class="quote-avatar"></div>
+            <div><div class="quote-name">Arjun Sharma</div><div class="quote-role">Lightweight Champion</div></div>
+          </div>
+        </div>
+        <div class="quote-slide" data-slide="1">
+          <p class="quote-text">Fight Night 18 had the pacing of a pay-per-view. WDS is closing the gap between Indian MMA and the global stage faster than anyone expected.</p>
+          <div class="quote-by">
+            <div class="quote-avatar"></div>
+            <div><div class="quote-name">Rohan Kapadia</div><div class="quote-role">MMA Analyst, Combat Sports India</div></div>
+          </div>
+        </div>
+        <div class="quote-slide" data-slide="2">
+          <p class="quote-text">Cage-side at Vashi, the crowd noise before Sharma's ring walk gave me chills. This is what Indian combat sports has been missing.</p>
+          <div class="quote-by">
+            <div class="quote-avatar"></div>
+            <div><div class="quote-name">Priyanka Menon</div><div class="quote-role">Season Ticket Holder</div></div>
+          </div>
+        </div>
+        <div class="quote-dots" id="quote-dots">
+          <button class="quote-dot is-active" data-dot="0" aria-label="Testimonial 1"></button>
+          <button class="quote-dot" data-dot="1" aria-label="Testimonial 2"></button>
+          <button class="quote-dot" data-dot="2" aria-label="Testimonial 3"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRAINERS ============ -->
+  <section class="bg-void" id="trainers">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Behind The Champions</div>
+          <h2 class="section-title">Professional <em>Trainers</em></h2>
+          <p class="section-sub">The strength, cardio and combat coaches building every WDS fight camp.</p>
+        </div>
+      </div>
+      <div class="trainer-grid">
+        <article class="trainer-card">
+          <div class="trainer-photo" style="--accent:var(--gold)"><div class="trainer-initials">RO</div></div>
+          <div class="trainer-body">
+            <div class="trainer-role">Strength &amp; Conditioning</div>
+            <div class="trainer-name">Coach Ramesh Oberoi</div>
+            <p class="trainer-bio">12 years training Olympic lifters and pro fighters. Builds every camp's power phase.</p>
+          </div>
+        </article>
+        <article class="trainer-card">
+          <div class="trainer-photo" style="--accent:var(--red-bright)"><div class="trainer-initials">MD</div></div>
+          <div class="trainer-body">
+            <div class="trainer-role">Combat &amp; Technical Striking</div>
+            <div class="trainer-name">Coach Meera Dsouza</div>
+            <p class="trainer-bio">Former state kickboxing champion. Sharpens striking and cage IQ for every title challenger.</p>
+          </div>
+        </article>
+        <article class="trainer-card">
+          <div class="trainer-photo" style="--accent:var(--ink-dim)"><div class="trainer-initials">FI</div></div>
+          <div class="trainer-body">
+            <div class="trainer-role">Cardio &amp; Recovery</div>
+            <div class="trainer-name">Coach Farhan Iqbal</div>
+            <p class="trainer-bio">Sports scientist specializing in fight-camp conditioning, VO2 max and fast recovery.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <div class="cta-band">
+    <div class="wrap cta-inner">
+      <h2>Witness History As India's Elite Athletes Collide.</h2>
+      <a class="btn btn--solid" href="#upcoming">Book Fight Night 19 →</a>
+    </div>
+  </div>
+
+  <!-- ============ SEASON SCHEDULE ============ -->
+  <section class="bg-surface" id="schedule">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">2026 Season</div>
+          <h2 class="section-title">Full <em>Schedule</em></h2>
+        </div>
+      </div>
+      <div class="schedule-list">
+        <div class="sched-row">
+          <div class="sched-date">Feb 8</div>
+          <div><div class="sched-name">WDS International: Mumbai vs Manila</div><div class="sched-venue">Jio World Convention Centre, Mumbai</div></div>
+          <div class="sched-status is-done">Completed</div>
+          <a class="event-link" href="#">Results →</a>
+        </div>
+        <div class="sched-row">
+          <div class="sched-date">Apr 26</div>
+          <div><div class="sched-name">Contender Series 4</div><div class="sched-venue">Thyagaraj Stadium, Delhi</div></div>
+          <div class="sched-status is-done">Completed</div>
+          <a class="event-link" href="#">Results →</a>
+        </div>
+        <div class="sched-row">
+          <div class="sched-date">Jun 14</div>
+          <div><div class="sched-name">WDS Main Event 7</div><div class="sched-venue">NSCI Dome, Worli, Mumbai</div></div>
+          <div class="sched-status is-done">Completed</div>
+          <a class="event-link" href="#">Results →</a>
+        </div>
+        <div class="sched-row">
+          <div class="sched-date">Aug 29</div>
+          <div><div class="sched-name">WDS Fight Night 18</div><div class="sched-venue">Cidco Exhibition Centre, Vashi</div></div>
+          <div class="sched-status is-done">Completed</div>
+          <a class="event-link" href="#">Results →</a>
+        </div>
+        <div class="sched-row">
+          <div class="sched-date">Oct 24</div>
+          <div><div class="sched-name">WDS Fight Night 19</div><div class="sched-venue">DY Patil Sports Stadium, Navi Mumbai</div></div>
+          <div class="sched-status is-next">Up Next</div>
+          <a class="event-link" href="#upcoming">Tickets →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOG ============ -->
+  <section class="bg-void" id="blog">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Media Room</div>
+          <h2 class="section-title">Recent <em>Blog</em></h2>
+        </div>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-body">
+            <div class="blog-date">Aug 31, 2026</div>
+            <div class="blog-title">Inside Fight Camp: How Sharma Prepares for a Title Defense</div>
+            <p class="blog-excerpt">A week embedded with the undefeated champion ahead of Fight Night 19.</p>
+          </div>
+        </article>
+        <article class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-body">
+            <div class="blog-date">Aug 20, 2026</div>
+            <div class="blog-title">Scouting Report: Five Prospects to Watch</div>
+            <p class="blog-excerpt">The next wave of Contender Series talent chasing a WDS contract.</p>
+          </div>
+        </article>
+        <article class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-body">
+            <div class="blog-date">Aug 5, 2026</div>
+            <div class="blog-title">The Business of the Cage: Building India's MMA Ecosystem</div>
+            <p class="blog-excerpt">How WDS went from one card in Navi Mumbai to a six-city season.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <span class="brand-mark"><span>W</span></span>
+          <span class="brand-word">Warriors Dream Series</span>
+        </a>
+        <p>India's premier MMA organization. The home of ruthless pros, elite amateurs, and unforgettable fights inside one electrifying cage.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/warriors_dream_series" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="LinkedIn">IN</a>
+          <a href="https://youtube.com/@WarriorsDreamSeries" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#upcoming">Events</a></li>
+          <li><a href="#rankings">Rankings</a></li>
+          <li><a href="#trainers">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#blog">Media Room</a></li>
+          <li><a href="#upcoming">Buy Tickets</a></li>
+          <li><a href="#schedule">2026 Schedule</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul class="footer-contact">
+          <li><b>Address</b>75/23 Folsom Ave, Suite 600<br>San Francisco, CA 94107</li>
+          <li><b>Phone</b>+88 (0) 101 0000 000</li>
+          <li><b>Email</b>info@yourdomain.com</li>
+          <li><b>Hours</b>Mon&#8211;Fri 8am&#8211;9:30pm<br>Sat&#8211;Sun 10am&#8211;1pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Warriors Dream Series. All rights reserved.</span>
+      <span>Fight smart. Fight fair. Fight WDS.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---- countdown ----
+  var el = document.getElementById('countdown');
+  if(el){
+    var target = new Date(el.getAttribute('data-target')).getTime();
+    var dEl=document.getElementById('cd-d'), hEl=document.getElementById('cd-h'),
+        mEl=document.getElementById('cd-m'), sEl=document.getElementById('cd-s');
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tick(){
+      var now = Date.now();
+      var diff = Math.max(0, target - now);
+      var d = Math.floor(diff/86400000);
+      var h = Math.floor((diff%86400000)/3600000);
+      var m = Math.floor((diff%3600000)/60000);
+      var s = Math.floor((diff%60000)/1000);
+      dEl.textContent = pad(d); hEl.textContent = pad(h);
+      mEl.textContent = pad(m); sEl.textContent = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  // ---- ticker: duplicate content once for seamless marquee ----
+  var track = document.getElementById('ticker-track');
+  if(track){
+    track.innerHTML += track.innerHTML;
+  }
+
+  // ---- past events filter ----
+  var chips = document.querySelectorAll('.filter-chip');
+  var cards = document.querySelectorAll('.event-card');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('is-active'); });
+      chip.classList.add('is-active');
+      var f = chip.getAttribute('data-filter');
+      cards.forEach(function(card){
+        var show = (f === 'all' || card.getAttribute('data-cat') === f);
+        card.hidden = !show;
+      });
+    });
+  });
+
+  // ---- testimonial carousel ----
+  var slides = document.querySelectorAll('.quote-slide');
+  var dots = document.querySelectorAll('.quote-dot');
+  var current = 0;
+  function showSlide(i){
+    slides.forEach(function(s,idx){ s.classList.toggle('is-active', idx===i); });
+    dots.forEach(function(d,idx){ d.classList.toggle('is-active', idx===i); });
+    current = i;
+  }
+  dots.forEach(function(dot){
+    dot.addEventListener('click', function(){
+      showSlide(parseInt(dot.getAttribute('data-dot'),10));
+      resetAutoplay();
+    });
+  });
+  var autoplay;
+  function resetAutoplay(){
+    clearInterval(autoplay);
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    autoplay = setInterval(function(){
+      showSlide((current+1) % slides.length);
+    }, 6000);
+  }
+  resetAutoplay();
+
+  // ---- mobile nav toggle ----
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if(toggle && links){
+    toggle.addEventListener('click', function(){
+      var open = links.style.display === 'flex';
+      links.style.display = open ? 'none' : 'flex';
+      links.style.cssText += open ? '' : 'position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#0A0A0E;padding:22px 28px;border-bottom:1px solid #2B2A34;gap:18px;';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
