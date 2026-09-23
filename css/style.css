@@ -1742,3 +1742,33 @@ a.results-btn:hover { background: var(--red); border-color: var(--red); color: #
   .ev-grid { grid-template-columns: 1fr; }
   .ev-venue { min-height: 0; }
 }
+
+/* ==========================================================================
+   Footer - brand logos + sizing matched to warriorsdreamseries.com
+   (shared by every page)
+   ========================================================================== */
+.site-footer { padding: 90px 24px 60px; }
+.footer-brand { width: 225px; margin-bottom: 28px; }
+.footer-nav { gap: 14px 30px; margin-bottom: 42px; }
+.footer-nav a { font-size: 1.2rem; }
+.footer-socials { gap: 6px; margin-bottom: 26px; }
+.footer-socials a {
+  width: 51px;
+  height: 51px;
+  border-radius: 4px;
+  background: #df2a2d;
+  color: #fff;
+  transition: background .2s ease, transform .2s ease;
+}
+.footer-socials a:hover { background: #111; transform: translateY(-2px); }
+.footer-socials svg { width: 28px; height: 28px; display: block; }
+.footer-copy { font-size: 1.2rem; }
+
+@media (max-width: 768px) {
+  .site-footer { padding: 60px 16px 36px; }
+  .footer-brand { width: 190px; }
+  .footer-nav { gap: 8px 18px; margin-bottom: 30px; }
+  .footer-nav a { font-size: 1.05rem; }
+  .footer-socials a { width: 46px; height: 46px; }
+  .footer-copy { font-size: 1.05rem; }
+}
