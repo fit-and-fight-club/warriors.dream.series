@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (href === path) a.classList.add('active');
   });
 
-  // Event category filter (data-category on .event-card, data-filter on buttons)
+  // Event category filter (data-category on .event-card / .ev-card, data-filter on buttons)
   const filterButtons = document.querySelectorAll('.event-filters button');
-  const cards = document.querySelectorAll('.event-card[data-category]');
+  const cards = document.querySelectorAll('.event-card[data-category], .ev-card[data-category]');
   filterButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       filterButtons.forEach((b) => b.classList.remove('active'));
