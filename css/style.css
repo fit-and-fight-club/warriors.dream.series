@@ -1772,3 +1772,49 @@ a.results-btn:hover { background: var(--red); border-color: var(--red); color: #
   .footer-socials a { width: 46px; height: 46px; }
   .footer-copy { font-size: 1.05rem; }
 }
+
+/* ==========================================================================
+   Events page - WDS 2026 Season Schedule (matches warriorsdreamseries.com)
+   Reuses the .ev-card poster cards from the home page Events grid.
+   ========================================================================== */
+.season-section {
+  position: relative;
+  padding: clamp(56px, 7vw, 100px) 0 clamp(64px, 8vw, 110px);
+  background-color: #050505;
+  background-size: cover;
+  background-position: center;
+}
+.season-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .86);
+}
+.season-inner { position: relative; z-index: 1; }
+.season-title {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 clamp(40px, 5vw, 72px);
+  padding: 10px 0 0 22px;
+  color: #fff;
+  font-family: 'Teko', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.season-title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 48px;
+  height: 36px;
+  background: var(--red);
+}
+.season-section .ev-card {
+  background: rgba(18, 18, 18, .82);
+  border-color: rgba(255, 255, 255, .06);
+  backdrop-filter: blur(2px);
+}
+.season-section .ev-btn { background: rgba(20, 20, 20, .7); }
