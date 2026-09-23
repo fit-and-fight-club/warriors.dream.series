@@ -2,7 +2,7 @@
    Warriors Dream Series — site stylesheet
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;500;600&display=swap');
 
 :root {
   --bg: #050505;
@@ -1818,3 +1818,51 @@ a.results-btn:hover { background: var(--red); border-color: var(--red); color: #
   backdrop-filter: blur(2px);
 }
 .season-section .ev-btn { background: rgba(20, 20, 20, .7); }
+
+/* ==========================================================================
+   About page - typography matched to warriorsdreamseries.com/about-us
+   ========================================================================== */
+.band { padding: clamp(56px, 6.5vw, 96px) 0; }
+.band-dark { background: #000; }
+.band-inner { max-width: 1050px; text-align: center; }
+.band-inner p {
+  margin: 0 0 15px;
+  font-family: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: .4px;
+  text-align: left;
+}
+.band-dark .band-inner p, .band-black .band-inner p { color: #fff; }
+.band-light .band-inner p { color: #111; }
+.story-close { text-align: center !important; font-weight: 600; }
+
+.band-title {
+  margin: 0 0 clamp(26px, 3vw, 40px);
+  padding: 4px 0 0 20px;
+  font-size: clamp(2.6rem, 5vw, 3.9rem);
+  letter-spacing: .5px;
+  z-index: 0;
+}
+.band-title::before {
+  top: 0;
+  transform: none;
+  z-index: -1;
+  width: 28px;
+  height: 46px;
+}
+
+.team-info h3 { font-size: clamp(1.9rem, 2.8vw, 2.5rem); }
+.team-role, .team-org {
+  font-family: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+}
+.team-info p {
+  max-width: 620px;
+  font-family: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  line-height: 1.6;
+  letter-spacing: .4px;
+}
