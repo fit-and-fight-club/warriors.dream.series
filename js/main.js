@@ -64,4 +64,30 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+  // Warrior Community popup (header button on every page)
+  const communityModal = document.getElementById('community-modal');
+  if (communityModal) {
+    let lastFocus = null;
+    const openCommunity = () => {
+      lastFocus = document.activeElement;
+      communityModal.hidden = false;
+      document.body.classList.add('community-open');
+      const closeBtn = communityModal.querySelector('.community-close');
+      if (closeBtn) closeBtn.focus();
+    };
+    const closeCommunity = () => {
+      communityModal.hidden = true;
+      document.body.classList.remove('community-open');
+      if (lastFocus) lastFocus.focus();
+    };
+    document.querySelectorAll('.js-community-open').forEach((btn) =>
+      btn.addEventListener('click', openCommunity)
+    );
+    communityModal.querySelectorAll('.js-community-close').forEach((el) =>
+      el.addEventListener('click', closeCommunity)
+    );
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !communityModal.hidden) closeCommunity();
+    });
+  }
 });
