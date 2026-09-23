@@ -1866,3 +1866,121 @@ a.results-btn:hover { background: var(--red); border-color: var(--red); color: #
   line-height: 1.6;
   letter-spacing: .4px;
 }
+
+/* ==========================================================================
+   Header "Warrior Community" button (same on every page)
+   ========================================================================== */
+button.header-cta {
+  border: 0;
+  cursor: pointer;
+  font-family: 'Teko', 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  line-height: 1;
+  padding: 15px 28px 13px;
+}
+.header-cta .cta-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: -2px; color: #fff; }
+.header-cta:focus-visible { outline: 3px solid #111; outline-offset: 3px; }
+@media (max-width: 860px) {
+  button.header-cta { padding: 12px; }
+}
+
+/* ==========================================================================
+   Warrior Community popup - "Stay Connected" (matches warriorsdreamseries.com)
+   ========================================================================== */
+.community-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.community-modal[hidden] { display: none; }
+.community-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .72);
+  animation: communityFade .25s ease;
+}
+.community-dialog {
+  position: relative;
+  width: min(500px, 100%);
+  padding: 50px 30px 50px;
+  background: #000;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .6);
+  animation: communityPop .3s ease;
+}
+.community-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  padding: 4px;
+  background: none;
+  border: 0;
+  color: #e3262a;
+  cursor: pointer;
+}
+.community-close svg { width: 100%; height: 100%; display: block; }
+.community-close:hover { color: #fff; }
+.community-frame {
+  padding: 50px clamp(18px, 6vw, 40px) 58px;
+  border: 2px solid #e3262a;
+  border-radius: 3px;
+  box-shadow: 0 0 22px rgba(227, 38, 42, .75), inset 0 0 18px rgba(227, 38, 42, .35);
+  text-align: center;
+}
+.community-title {
+  margin: 0 0 30px;
+  color: #fff;
+  font-family: 'Teko', sans-serif;
+  font-size: clamp(2.4rem, 7vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.community-text {
+  margin: 0 0 44px;
+  color: #eee;
+  font-family: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: .4px;
+}
+.community-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 356px;
+  margin: 0 auto 30px;
+  padding: 15px 16px 12px;
+  color: #fff;
+  font-family: 'Teko', sans-serif;
+  font-size: 1.32rem;
+  font-weight: 600;
+  letter-spacing: .6px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: 2px;
+  transition: transform .2s ease, filter .2s ease;
+}
+.community-btn:last-child { margin-bottom: 0; }
+.community-btn svg { width: 20px; height: 20px; flex: none; margin-top: -3px; }
+.community-btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.community-btn--whatsapp { background: #16cc6a; }
+.community-btn--instagram { background: linear-gradient(90deg, #f0913e 0%, #e0356a 55%, #c31e9a 100%); }
+body.community-open { overflow: hidden; }
+
+@keyframes communityFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes communityPop { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+@media (max-width: 480px) {
+  .community-dialog { padding: 46px 16px 30px; }
+  .community-btn { font-size: 1.15rem; gap: 10px; white-space: normal; }
+}
