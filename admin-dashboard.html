@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Warriors Dream Series</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+</head>
+<body>
+    <!-- Your existing header/nav -->
+    <header>
+        <nav>
+            <div class="navbar-brand">
+                <a href="index.html">⚔️ WARRIORS DREAM SERIES</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Events</a></li>
+                <li><a href="rankings.html">Rankings</a></li>
+                <li><a href="about-us.html">About</a></li>
+                <li><a href="contact-us.html">Contact</a></li>
+                <li class="active"><a href="admin-dashboard.html">Admin Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Admin Dashboard Content -->
+    <div class="admin-container">
+        <h1>🥋 Warriors Dream Series - Admin Dashboard</h1>
+        
+        <!-- Auth Section -->
+        <div class="auth-card">
+            <div class="auth-info">
+                <p>Logged in as: <span id="currentUser">Not logged in</span></p>
+                <p>Role: <span id="userRole">-</span></p>
+            </div>
+            <button onclick="openLoginModal()">Login</button>
+            <button onclick="logoutUser()" class="btn-secondary">Logout</button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="admin-tabs">
+            <button class="tab-button active" onclick="switchTab('fighters')">Fighters</button>
+            <button class="tab-button" onclick="switchTab('events')">Events</button>
+            <button class="tab-button" onclick="switchTab('bouts')">Bouts</button>
+            <button class="tab-button" onclick="switchTab('judges')">Judges</button>
+            <button class="tab-button" onclick="switchTab('scorecards')">Scorecards</button>
+            <button class="tab-button" onclick="switchTab('rankings')">Rankings</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="fighters" class="tab-content active">
+            <!-- Fighters management UI -->
+        </div>
+        
+        <!-- More tabs... -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Warriors Dream Series. All rights reserved.</p>
+    </footer>
+
+    <script src="js/admin-dashboard.js"></script>
+</body>
+</html>
