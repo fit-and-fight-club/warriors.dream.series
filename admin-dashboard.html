@@ -1265,6 +1265,117 @@
 
         // Init
         window.addEventListener('load', updateAuthUI);
+        // ==================== RANKING CALCULATOR ====================
+class RankingCalculator {
+    constructor(supabaseClient) {
+        this.supabase = supabaseClient;
+    }
+
+    async calculateWinPercentage(fighterId) {
+        const { data } = await this.supabase
+            .from('bouts')
+            .select('id, fighter1_id, fighter2_id, winner_id, status')
+            .eq('status', 'completed')
+            .or(`fighter1_id.eq.${fighterId},fighter2_id.eq.${fighterId}`);
+
+        if (!data || data.length === 0) return 0;
+        const wins = data.filter(bout => bout.winner_id === fighterId).length;
+        return (wins / data.length) * 100;
+    }
+
+    async calculateRecentForm(fighterId) {
+        const { data } = await this.supabase
+            .from('bouts')
+            .select('id, winner_id')
+            .eq('status', 'completed')
+            .or(`fighter1_id.eq.${fighterId},fighter2_id.eq.${fighterId}`)
+            .order('created_at', { ascending: false })
+            .limit(5);
+
+        if (!data || data.length === 0) return 0;
+        const recentWins = data.filter(bout => bout.winner_id === fighterId).length;
+        return (recentWins / data.length) * 100;
+    }
+
+    async getTotalFights(fighterId) {
+        const { data } = await this.supabase
+            .from('bouts')
+            .select('id')
+            .eq('status', 'completed')
+            .or(`fighter1_id.eq.${fighterId},fighter2_id.eq.${fighterId}`);
+        return data ? data.length : 0;
+    }
+
+    async calculateRankingScore(fighterId) {
+        const winPercentage = await this.calculateWinPercentage(fighterId);
+        const recentForm = await this.calculateRecentForm(fighterId);
+        const totalFights = await this.getTotalFights(fighterId);
+
+        const weightedScore = (winPercentage * 0.7) + (recentForm * 0.3);
+        const volumeMultiplier = Math.sqrt(totalFights);
+        const finalScore = weightedScore * volumeMultiplier;
+
+        return {
+            score: Math.round(finalScore * 100) / 100,
+            winPercentage: Math.round(winPercentage * 100) / 100,
+            recentForm: Math.round(recentForm * 100) / 100,
+            totalFights: totalFights
+        };
+    }
+
+    async updateAllRankings() {
+        try {
+            const { data: fighters } = await this.supabase
+                .from('fighters')
+                .select('id, name');
+
+            if (!fighters || fighters.length === 0) {
+                showNotification('No fighters found', 'error');
+                return [];
+            }
+
+            const rankings = [];
+            for (const fighter of fighters) {
+                const rankingData = await this.calculateRankingScore(fighter.id);
+                rankings.push({
+                    fighter_id: fighter.id,
+                    public_id: `RNK-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+                    fighter_name: fighter.name,
+                    score: rankingData.score,
+                    win_percentage: rankingData.winPercentage,
+                    recent_form: rankingData.recentForm,
+                    total_fights: rankingData.totalFights,
+                    updated_at: new Date().toISOString()
+                });
+            }
+
+            await this.supabase.from('rankings').delete().gte('updated_at', '2000-01-01');
+            const { error } = await this.supabase.from('rankings').insert(rankings);
+            
+            if (error) throw error;
+            return rankings;
+        } catch (error) {
+            console.error('Error updating rankings:', error);
+            return [];
+        }
+    }
+}
+
+// Initialize ranking calculator
+const rankingCalculator = new RankingCalculator(supabase);
+
+// Function to update rankings
+async function updateRankings() {
+    try {
+        showNotification('🔄 Recalculating rankings...', 'info');
+        const rankings = await rankingCalculator.updateAllRankings();
+        showNotification(`✅ Rankings updated! ${rankings.length} fighters ranked.`, 'success');
+        loadRankings();
+    } catch (error) {
+        console.error('Error updating rankings:', error);
+        showNotification('❌ Error updating rankings: ' + error.message, 'error');
+    }
+}
     </script>
 </body>
 </html>
